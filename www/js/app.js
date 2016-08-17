@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, BackandProvider) {
+.config(function($stateProvider, $urlRouterProvider, BackandProvider, $httpProvider) {
     BackandProvider.setAppName('appebooks');
     BackandProvider.setSignUpToken('5801d9f9-4bc7-4299-acfb-a572774ee04f');
     BackandProvider.setAnonymousToken('6940f8c7-c86e-4cd9-934a-f28436a98f90');
@@ -57,7 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          controller: 'ChatsCtrl as vm'
         }
       }
     })

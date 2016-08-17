@@ -1,50 +1,64 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+    .service('APIInterceptor', function ($rootScope, $q) {
+        var service = this;
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+        service.responseError = function (response) {
+            if (response.status === 401) {
+                $rootScope.$broadcast('unauthorized');
+            }
+            return $q.reject(response);
+        };
+    })
 
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    .service('ItemsModel', function ($http, Backand) {
+        var service = this,
+            baseUrl = '/1/objects/',
+            objectName = 'prueba/';
+
+        function getUrl() {
+            return Backand.getApiUrl() + baseUrl + objectName;
         }
-      }
-      return null;
-    }
-  };
-});
+
+        function getUrlForId(id) {
+            return getUrl() + id;
+        }
+
+        service.all = function () {
+            return $http.get(getUrl());
+        };
+
+        service.fetch = function (id) {
+            return $http.get(getUrlForId(id));
+        };
+
+        service.create = function (object) {
+            return $http.post(getUrl(), object);
+        };
+
+        service.update = function (id, object) {
+            return $http.put(getUrlForId(id), object);
+        };
+
+        service.delete = function (id) {
+            return $http.delete(getUrlForId(id));
+        };
+    })
+
+    .service('LoginService', function (Backand) {
+        var service = this;
+
+        service.signin = function (email, password, appName) {
+            //call Backand for sign in
+            return Backand.signin(email, password);
+        };
+
+        service.anonymousLogin= function(){
+            // don't have to do anything here,
+            // because we set app token att app.js
+        }
+
+        service.signout = function () {
+            return Backand.signout();
+        };
+    });
