@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, BackandProvider, $httpProvider) {
+.config(function(BackandProvider,$stateProvider, $urlRouterProvider, $httpProvider) {
     BackandProvider.setAppName('appebooks');
     BackandProvider.setSignUpToken('5801d9f9-4bc7-4299-acfb-a572774ee04f');
     BackandProvider.setAnonymousToken('6940f8c7-c86e-4cd9-934a-f28436a98f90');
@@ -83,5 +83,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
+  $httpProvider.interceptors.push('APIInterceptor');
 
 });

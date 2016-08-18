@@ -22,21 +22,21 @@
         <ion-content class="padding has-header">
             <!-- CREATING -->
             <div class="bar bar-header">
-                <h2 class="title">Create Item</h2>
-                <span ng-click="vm.cancelCreate()" class="cancel-create">Cancel</span>
+                <h2 class="title">Crear usuario</h2>
+                <span ng-click="vm.cancelCreate()" class="cancel-create">Cancelar</span>
             </div>
             <div class="bar bar-subheader">
                 <form class="create-form" role="form"
                       ng-submit="vm.create(vm.newObject)" novalidate>
                     <div class="list">
                         <label class="item item-input item-stacked-label">
-                            <span class="input-label">Name</span>
+                            <span class="input-label">Nombre</span>
                             <input type="text" class="form-control"
                                    ng-model="vm.newObject.nombre"
                                    placeholder="Ingresa el nombre">
                         </label>
                     </div>
-                    <button class="button button-block button-positive" type="submit">Create</button>
+                    <button class="button button-block button-positive" type="submit">Crear</button>
                 </form>
             </div>
         </ion-content>
@@ -45,21 +45,21 @@
         <ion-content class="padding has-header">
             <!-- EDITING -->
             <div class="bar bar-header bar-secondary">
-                <h1 class="title">Editing {{vm.edited.name}}</h1>
-                <span ng-click="vm.cancelEditing()" class="cancel-create">Cancel</span>
+                <h1 class="title">Edición {{vm.edited.nombre}}</h1>
+                <span ng-click="vm.cancelEditing()" class="cancel-create">Cancelar</span>
             </div>
             <div class="bar bar-subheader">
                 <form class="edit-form" role="form"
                       ng-submit="vm.update(vm.edited)" novalidate>
                     <div class="list">
                         <label class="item item-input item-stacked-label">
-                            <span class="input-label">Name</span>
+                            <span class="input-label">Nombre</span>
                             <input type="text" class="form-control"
-                                   ng-model="vm.edited.name"
-                                   placeholder="Enter name">
+                                   ng-model="vm.edited.nombre"
+                                   placeholder="Ingresa el nuevo nombre">
                         </label>
                     </div>
-                    <button class="button button-block button-positive" type="submit">Save</button>
+                    <button class="button button-block button-positive" type="submit">Guardar cambios</button>
                 </form>
             </div>
         </ion-content>
