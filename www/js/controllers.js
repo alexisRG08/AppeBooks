@@ -4,11 +4,7 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function(ItemsModel,$scope) {
     var vm = this;
-
-    function goToBackand() {
-        window.location = 'http://docs.backand.com';
-    }
-
+    
     function getAll() {
         ItemsModel.all()
             .then(function (result) {
@@ -79,7 +75,6 @@ angular.module('starter.controllers', [])
     vm.isCurrent = isCurrent;
     vm.cancelEditing = cancelEditing;
     vm.cancelCreate = cancelCreate;
-    vm.goToBackand = goToBackand;
     vm.isAuthorized = false;
 
     $scope.$on('authorized', function () {

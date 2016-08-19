@@ -1,9 +1,9 @@
-<ion-view view-title="Usuarios">
+<ion-view view-title="Libros">
     <div ng-if="!vm.isCreating && !vm.isEditing">
         <ion-content class="padding has-header">
             <!-- LIST -->
             <div class="bar bar-header">
-                <span ng-click="vm.isCreating = true"><i class='icon ion-plus-round new-item'> Agregar usuario</i></span>
+                <span ng-click="vm.isCreating = true"><i class='icon ion-plus-round new-item'> Agregar libro</i></span>
             </div>
             <div class="bar bar-subheader">
                 <div class="list card" ng-repeat="object in vm.data"
@@ -11,7 +11,7 @@
                     <div class="item item-icon-right item-icon-left">
                         <i class="ion-compose icon" ng-click="vm.setEdited(object)"></i>
 
-                        <h2 class="text-center">{{object.nombre}}</h2>
+                        <h2 class="text-center">{{object.titulo}}</h2>
                         <i class="icon ion-close-round" ng-click="vm.delete(object.id)"></i>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
         <ion-content class="padding has-header">
             <!-- CREATING -->
             <div class="bar bar-header">
-                <h2 class="title">Crear usuario</h2>
+                <h2 class="title">Crear libro</h2>
                 <span ng-click="vm.cancelCreate()" class="cancel-create">Cancelar</span>
             </div>
             <div class="bar bar-subheader">
@@ -31,9 +31,15 @@
                     <div class="list">
                         <label class="item item-input item-stacked-label">
                             <span class="input-label">Nombre</span>
-                            <input type="text" class="form-control"
-                                   ng-model="vm.newObject.nombre"
-                                   placeholder="Ingresa el nombre">
+                            <input type="text" class="form-control" ng-model="vm.newObject.titulo" placeholder="Ingresa el título del libro">
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Reseña</span>
+                            <input type="text" class="form-control" ng-model="vm.newObject.resena" placeholder="Ingresa una pequeña reseña">
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Precio</span>
+                            <input type="text" class="form-control" ng-model="vm.newObject.precio" placeholder="Ingresa el precio de venta">
                         </label>
                     </div>
                     <button class="button button-block button-positive" type="submit">Crear</button>
@@ -45,18 +51,27 @@
         <ion-content class="padding has-header">
             <!-- EDITING -->
             <div class="bar bar-header bar-secondary">
-                <h1 class="title">Edición {{vm.edited.nombre}}</h1>
+                <h1 class="title">Edición {{vm.edited.titulo}}</h1>
                 <span ng-click="vm.cancelEditing()" class="cancel-create">Cancelar</span>
             </div>
             <div class="bar bar-subheader">
-                <form class="edit-form" role="form"
-                      ng-submit="vm.update(vm.edited)" novalidate>
+                <form class="edit-form" role="form" ng-submit="vm.update(vm.edited)" novalidate>
                     <div class="list">
                         <label class="item item-input item-stacked-label">
-                            <span class="input-label">Nombre</span>
-                            <input type="text" class="form-control"
-                                   ng-model="vm.edited.nombre"
-                                   placeholder="Ingresa el nuevo nombre">
+                            <span class="input-label">Título</span>
+                            <input type="text" class="form-control" ng-model="vm.edited.titulo" placeholder="Ingresa el nuevo título">
+                        </label>
+                    </div>
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Reseña</span>
+                            <input type="text" class="form-control" ng-model="vm.edited.resena" placeholder="Ingresa la nueva reseña">
+                        </label>
+                    </div>
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Precio</span>
+                            <input type="text" class="form-control" ng-model="vm.edited.precio" placeholder="Ingresa el nuevo precio">
                         </label>
                     </div>
                     <button class="button button-block button-positive" type="submit">Guardar cambios</button>

@@ -14,7 +14,7 @@ angular.module('starter.services', [])
     .service('ItemsModel', function ($http, Backand) {
         var service = this,
             baseUrl = '/1/objects/',
-            objectName = 'prueba/';
+            objectName = 'libros/';
 
         function getUrl() {
             return Backand.getApiUrl() + baseUrl + objectName;
